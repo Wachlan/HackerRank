@@ -10,21 +10,26 @@ import sys
 def candies(n, arr):
     candyTotal = 0
     previousRating = 0
-    currentGift = 1
+    currentGift = 0
     
-    for x in arr:
-        if x > previousRating:
+    for i in range(len(arr)):
+        if arr[i] > previousRating:
             currentGift = currentGift + 1
             if currentGift < 1:
                 currentGift = 1
             candyTotal = candyTotal + currentGift
-        elif x < previousRating:
+        elif arr[i] <= previousRating:
             currentGift = currentGift - 1
+            lesserGift = len(arr) - i;
+            
+            if lesserGift < currentGift:
+                currentGift = lesserGift
+                
             if currentGift < 1:
                 currentGift = 1
             candyTotal = candyTotal + currentGift
             
-        previousRating = x
+        previousRating = arr[i]
         
     return candyTotal
 
