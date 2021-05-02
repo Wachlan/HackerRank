@@ -8,23 +8,18 @@ import sys
 
 # Complete the isBalanced function below.
 def isBalanced(s):
-    halfwayFlag = 0
 
-    for i in range(len(s)):
-        if s[i] == ')' or ']' or '}':
-            halfwayFlag = 1
-            break
-        elif s[i] == '(' or '[' or '{':
-            continue
+    cycleTimes = len(s)
     
-    while i < len(s):
-        if s[i] == '(' or '[' or '{':
-            answer = "NO"
-            break
-        elif s[i] == ')' or ']' or '}':
-            continue
+    for x in range(cycleTimes):
+        s = s.replace("[]","")
+        s = s.replace("()","")
+        s = s.replace("{}","")
 
-    answer = "YES"
+    if not s:
+        answer = "YES"
+    else:
+        answer = "NO"
 
     return answer
 
@@ -41,3 +36,4 @@ if __name__ == '__main__':
         fptr.write(result + '\n')
 
     fptr.close()
+
